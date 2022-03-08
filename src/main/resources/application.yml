@@ -1,0 +1,40 @@
+# Server Settings
+server:
+  port: 8082
+
+secret:
+  identifier: ENC(XFK2L0Md1PstfaIDjUbITg==)
+  key: ENC(qK6f/48t6IHlp+SLoAmPmUMJ7wFBNtKcSxhz9uXQu0se23OMnBvE0BkYsEcNQnUkw97T+zQtH2BR8arQmdlS1Q==)
+
+# MyBatis Settings
+mybatis:
+  type-aliases-package: com.tx0x.nocalleridbackend.dto
+  mapper-locations: classpath:mappers/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: reuse
+
+spring:
+  datasource:
+    hikari:
+#      data-source-class-name: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ENC(NZEFBn+S4YryJmAsbOWjMdnWspqSm/yb17+5E3A8MNEJifoCHHDSFMEQPUHAGMN9LvEXLChMMgLCVEWQzb9hSVNUaVonMR8Dx65yuuneb+iHHWOjYGkKsgzTBXru6+sm8+/qEQIv07yugHpew8dHjWykwcfMR4IoPkYpLw1Zfe2MbRfBKuUXHRvjUK55PQsPhYr3MrlvN5J/bc0zYh3674zu7lRITfVOSlDYIX9sDodT1hfQpcUaaw==)
+      username: ENC(o9OdwH6Wq5STVTkzgcdtaw==)
+      password: ENC(MncUXyUZUb2OTyRY1wRbsajUZit650iv)
+      connection-test-query: SELECT 1 FROM dual
+      connection-timeout: 5000
+      validation-timeout: 1000
+      maximum-pool-size: 30
+      minimum-idle: 2
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+# Jasypt Settings
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor

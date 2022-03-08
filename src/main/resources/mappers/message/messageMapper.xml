@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tx0x.nocalleridbackend.mapper.MessageMapper">
+
+    <!--    Basic Delete-->
+    <!--    Message delete is not used-->
+    <!--    <delete id="deleteMessage" parameterType="Integer">-->
+    <!--        DELETE FROM message WHERE id=#{id}-->
+    <!--    </delete>-->
+    <!--    Basic Update -->
+    <!--    Message update is not used-->
+    <!--    <update id="updateMessage" parameterType="com.tx0x.nocalleridbackend.dto.Message">-->
+    <!--        UPDATE message SET text=#{text} WHERE id=#{id}-->
+    <!--    </update>-->
+
+    <!--    Basic Create-->
+    <insert id="createMessage" parameterType="com.tx0x.nocalleridbackend.dto.Message" keyProperty="id">
+        INSERT INTO message(user_id, `from`, `to`, img, text) VALUES(#{userId}, #{from}, #{to}, #{img}, #{text})
+    </insert>
+
+    <select id="getMessagesByUserId" parameterType="Integer" resultType="com.tx0x.nocalleridbackend.dto.Message">
+        SELECT * FROM message WHERE user_id=#{userId}
+    </select>
+
+    <select id="getMessages" resultType="com.tx0x.nocalleridbackend.dto.Message">
+        SELECT * FROM message
+    </select>
+
+    <!--    Basic Read-->
+    <select id="getMessage" parameterType="Integer" resultType="com.tx0x.nocalleridbackend.dto.Message">
+        SELECT * FROM message WHERE id=#{id}
+    </select>
+</mapper>

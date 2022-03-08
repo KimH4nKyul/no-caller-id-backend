@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tx0x.nocalleridbackend.mapper.UserMapper">
+
+<!--    Token-->
+    <update id="updateToken" parameterType="com.tx0x.nocalleridbackend.dto.User" useGeneratedKeys="true" keyProperty="id">
+        UPDATE user SET token=#{token} WHERE id=#{id}
+    </update>
+
+    <select id="getTokenBalance" parameterType="Integer" resultType="Integer">
+        SELECT token FROM user WHERE id=#{id}
+    </select>
+
+<!--    User-->
+    <update id="updateUser" parameterType="com.tx0x.nocalleridbackend.dto.User" useGeneratedKeys="true" keyProperty="id">
+        UPDATE user SET url=#{url} WHERE id=#{id}
+    </update>
+
+    <insert id="createUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.tx0x.nocalleridbackend.dto.User">
+        INSERT INTO user(email, birth, token, url) VALUES(#{email}, #{birth}, #{token}, #{url})
+    </insert>
+
+    <select id="getUserByEmail" parameterType="String" resultType="com.tx0x.nocalleridbackend.dto.User">
+        SELECT * FROM user WHERE email=#{email}
+    </select>
+
+    <select id="getUsers" resultType="com.tx0x.nocalleridbackend.dto.User">
+        SELECT * FROM user
+    </select>
+
+    <select id="getUrlById" parameterType="Integer" resultType="String">
+        SELECT url FROM user WHERE id=#{id}
+    </select>
+
+    <select id="getUserByEmailAndBirth" parameterType="com.tx0x.nocalleridbackend.dto.User" resultType="boolean">
+        SELECT IF(COUNT(*) = 1, 1, 0) FROM user WHERE email=#{email} AND birth=#{birth}
+    </select>
+
+    <select id="getUserById" parameterType="Integer" resultType="com.tx0x.nocalleridbackend.dto.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+</mapper>
